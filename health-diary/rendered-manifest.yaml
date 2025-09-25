@@ -63,7 +63,7 @@ spec:
       serviceAccountName: release-name-health-diary
       containers:
         - name: health-diary
-          image: "container-registry.local:32000/health-diary-ui:v0.1.2"
+          image: "container-registry.local:32000/health-diary-ui:v0.1.3"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
