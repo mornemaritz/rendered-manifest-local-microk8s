@@ -63,7 +63,7 @@ spec:
       serviceAccountName: release-name-health-diary
       containers:
         - name: health-diary
-          image: "ghcr.io/mornemaritz/health-diary/health-diary-ui:v0.4.3"
+          image: "ghcr.io/mornemaritz/health-diary/health-diary-ui:v0.5.0"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
