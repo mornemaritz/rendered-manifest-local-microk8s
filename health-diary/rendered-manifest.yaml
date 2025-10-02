@@ -3,11 +3,11 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: release-name-health-diary
+  name: local-microk8s-health-diary
   labels:
     helm.sh/chart: health-diary-0.1.0
     app.kubernetes.io/name: health-diary
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: local-microk8s
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 automountServiceAccountToken: true
@@ -16,11 +16,11 @@ automountServiceAccountToken: true
 apiVersion: v1
 kind: Service
 metadata:
-  name: release-name-health-diary
+  name: local-microk8s-health-diary
   labels:
     helm.sh/chart: health-diary-0.1.0
     app.kubernetes.io/name: health-diary
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: local-microk8s
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -32,17 +32,17 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: health-diary
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: local-microk8s
 ---
 # Source: health-diary/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: release-name-health-diary
+  name: local-microk8s-health-diary
   labels:
     helm.sh/chart: health-diary-0.1.0
     app.kubernetes.io/name: health-diary
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: local-microk8s
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 spec:
@@ -50,17 +50,17 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: health-diary
-      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/instance: local-microk8s
   template:
     metadata:
       labels:
         helm.sh/chart: health-diary-0.1.0
         app.kubernetes.io/name: health-diary
-        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/instance: local-microk8s
         app.kubernetes.io/version: "1.16.0"
         app.kubernetes.io/managed-by: Helm
     spec:
-      serviceAccountName: release-name-health-diary
+      serviceAccountName: local-microk8s-health-diary
       containers:
         - name: health-diary
           image: "ghcr.io/mornemaritz/health-diary/health-diary-ui:v0.7.0"
@@ -89,11 +89,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "release-name-health-diary-test-connection"
+  name: "local-microk8s-health-diary-test-connection"
   labels:
     helm.sh/chart: health-diary-0.1.0
     app.kubernetes.io/name: health-diary
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: local-microk8s
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
@@ -103,5 +103,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['release-name-health-diary:3000']
+      args: ['local-microk8s-health-diary:3000']
   restartPolicy: Never
