@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
 automountServiceAccountToken: true
+
 ---
 # Source: health-diary/templates/service.yaml
 apiVersion: v1
@@ -33,6 +34,7 @@ spec:
   selector:
     app.kubernetes.io/name: health-diary
     app.kubernetes.io/instance: release-name
+
 ---
 # Source: health-diary/templates/deployment.yaml
 apiVersion: apps/v1
@@ -63,7 +65,7 @@ spec:
       serviceAccountName: release-name-health-diary
       containers:
         - name: health-diary
-          image: "ghcr.io/mornemaritz/health-diary/health-diary-ui:v0.19.3"
+          image: "ghcr.io/mornemaritz/health-diary/health-diary-ui:v0.20.0"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -105,3 +107,4 @@ spec:
       command: ['wget']
       args: ['release-name-health-diary:3000']
   restartPolicy: Never
+
